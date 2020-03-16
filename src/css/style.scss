@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  font-family: Montserrat, "sans-serif";
+  text-align: center;
+  background-color: #222831;
+  color: #e3f6f5;
+}
+
+.page-wrapper {
+  width: 90%;
+  margin: 0 auto;
+}
+
+header {
+  margin-top: 1em;
+  h3 {
+    color: #ee4540;
+    font-size: 1.4em;
+    margin-bottom: 0.3em;
+  }
+}
+
+.stats-wrapper {
+  width: 70%;
+  border-radius: 10px;
+  display: grid;
+  align-items: center;
+  height: 8em;
+  margin: 2.5em auto;
+  box-shadow: 4px 4px 8px 0px rgba(15, 15, 15, 0.75),
+    -4px -4px 8px 0px rgba(110, 110, 110, 0.75);
+  p {
+    font-size: 1.3em;
+  }
+  h4 {
+    font-size: 2.5em;
+    font-family: Roboto;
+  }
+
+  .infected-val {
+    color: #64818b;
+  }
+  .recovered-val {
+    color: #7ba346;
+  }
+  .deaths-val {
+    color: #801336;
+  }
+}
+
+footer {
+  margin-bottom: 1em;
+  p {
+    font-size: 0.9em;
+    margin-bottom: 10px;
+  }
+  small {
+    font-weight: bold;
+  }
+}
+
+.loading {
+  margin: 6em;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 1000px) {
+  main {
+    display: flex;
+    .stats-wrapper {
+      margin: 5em 1em;
+    }
+  }
+}
