@@ -26,13 +26,36 @@ header {
   }
 }
 
+.global-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  margin: 1em auto 2em auto;
+  height: 5em;
+  width: 90%;
+  border-radius: 10px;
+  box-shadow: 3px 4px 8px 1px rgb(15, 15, 15), -3px -4px 8px 1px rgb(99, 99, 99);
+  h4 {
+    font-family: Roboto;
+  }
+  .infected-val {
+    color: #64818b;
+  }
+  .recovered-val {
+    color: #7ba346;
+  }
+  .deaths-val {
+    color: #c51221;
+  }
+}
+
 .stats-wrapper {
   width: 70%;
   border-radius: 10px;
   display: grid;
   align-items: center;
-  height: 8em;
-  margin: 2.5em auto;
+  height: 7.5em;
+  margin: 2em auto;
   box-shadow: 3px 4px 8px 1px rgb(15, 15, 15), -3px -4px 8px 1px rgb(99, 99, 99);
   p {
     font-size: 1.3em;
@@ -49,17 +72,22 @@ header {
     color: #7ba346;
   }
   .deaths-val {
-    color: #801336;
+    color: #c51221;
   }
+}
+
+.infected {
+  margin-top: 1em;
 }
 
 footer {
   margin-bottom: 1em;
   p {
     font-size: 0.9em;
-    margin-bottom: 10px;
   }
   small {
+    margin-top: 15px;
+    display: inline-block;
     font-weight: bold;
   }
 }
@@ -70,10 +98,16 @@ footer {
 }
 
 @media screen and (min-width: 1000px) {
-  main {
+  .desktop-flex {
     display: flex;
     .stats-wrapper {
-      margin: 5em 1em;
+      margin: 1.5em 1em 2.5em 1em;
     }
+  }
+  .global-wrapper {
+    width: 60%;
+  }
+  .title {
+    margin-top: 1em;
   }
 }
