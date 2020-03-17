@@ -38,8 +38,8 @@ header h3 {
           align-items: center;
   height: 8em;
   margin: 2.5em auto;
-  -webkit-box-shadow: 4px 4px 8px 0px rgba(15, 15, 15, 0.75), -4px -4px 8px 0px rgba(110, 110, 110, 0.75);
-          box-shadow: 4px 4px 8px 0px rgba(15, 15, 15, 0.75), -4px -4px 8px 0px rgba(110, 110, 110, 0.75);
+  -webkit-box-shadow: 3px 4px 8px 1px #0f0f0f, -3px -4px 8px 1px #636363;
+          box-shadow: 3px 4px 8px 1px #0f0f0f, -3px -4px 8px 1px #636363;
 }
 
 .stats-wrapper p {
