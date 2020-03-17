@@ -36,6 +36,10 @@ function Global() {
   console.log(statsGlobal);
   if (!statsGlobal) return <p className="loading">Loading....</p>;
 
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   return (
     <div>
       <h4 className="title">WORLDWIDE</h4>
@@ -43,17 +47,23 @@ function Global() {
       <div className="global-wrapper">
         <div className="global-stats">
           <p>Confirmed</p>
-          <h4 className="infected-val">{statsGlobal.confirmed.value}</h4>
+          <h4 className="infected-val">
+            {numberWithCommas(statsGlobal.confirmed.value)}
+          </h4>
         </div>
 
         <div className="global-stats">
           <p>Recovered</p>
-          <h4 className="recovered-val">{statsGlobal.recovered.value}</h4>
+          <h4 className="recovered-val">
+            {numberWithCommas(statsGlobal.recovered.value)}
+          </h4>
         </div>
 
         <div className="global-stats">
           <p>Deaths</p>
-          <h4 className="deaths-val">{statsGlobal.deaths.value}</h4>
+          <h4 className="deaths-val">
+            {numberWithCommas(statsGlobal.deaths.value)}
+          </h4>
         </div>
       </div>
     </div>
@@ -67,8 +77,6 @@ function Stats() {
   if (!stats) return <p className="loading">Loading....</p>;
   if (!statsGlobal) return <p className="loading">Loading....</p>;
   console.log(stats);
-  // const dateString = new Date(stats.lastUpdate);
-  // const dateStringGlobal = new Date(statsGlobal.lastUpdate);
 
   return (
     <div>

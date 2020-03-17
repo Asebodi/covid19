@@ -60,6 +60,10 @@ header h3 {
   color: #c51221;
 }
 
+.global-wrapper .global-stats p {
+  font-size: 0.9em;
+}
+
 .stats-wrapper {
   width: 70%;
   border-radius: 10px;
