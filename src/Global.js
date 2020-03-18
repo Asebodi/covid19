@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Global from "./Global";
-import "./css/style.css";
 
 function useStats(url) {
   const [stats, setStats] = useState();
@@ -15,7 +13,7 @@ function useStats(url) {
   return stats;
 }
 
-function GlobalNot() {
+export default function Global() {
   const statsGlobal = useStats("https://covid19.mathdro.id/api/");
   const chart = useStats("https://covid19.mathdro.id/api/daily");
 
@@ -70,72 +68,3 @@ function GlobalNot() {
     </div>
   );
 }
-
-function Stats() {
-  const format = require("date-format");
-  const stats = useStats("https://covid19.mathdro.id/api/countries/ID");
-  const statsGlobal = useStats("https://covid19.mathdro.id/api/");
-
-  if (!stats) return <p className="loading">Loading....</p>;
-  if (!statsGlobal) return <p className="loading">Loading....</p>;
-
-  return (
-    <div>
-      <main>
-        <Global></Global>
-
-        <h4>INDONESIA</h4>
-        <div className="desktop-flex">
-          <div className="stats-wrapper infected">
-            <p>Confirmed:</p>
-            <h4 className="infected-val">{stats.confirmed.value}</h4>
-          </div>
-
-          <div className="stats-wrapper recovered">
-            <p>Recovered:</p>
-            <h4 className="recovered-val">{stats.recovered.value}</h4>
-          </div>
-
-          <div className="stats-wrapper deaths">
-            <p>Deaths:</p>
-            <h4 className="deaths-val">{stats.deaths.value}</h4>
-          </div>
-        </div>
-      </main>
-
-      <footer>
-        <p>Last update</p>
-        <p>
-          Worldwide:{" "}
-          {format.asString(
-            "dd-MM-yyyy hh:mm:ss",
-            new Date(statsGlobal.lastUpdate)
-          )}{" "}
-          WIB
-        </p>
-        <p>
-          Indonesia:{" "}
-          {format.asString("dd-MM-yyyy hh:mm:ss", new Date(stats.lastUpdate))}{" "}
-          WIB
-        </p>
-        <small>raharditya.com</small>
-      </footer>
-    </div>
-  );
-}
-
-function App() {
-  return (
-    <body>
-      <div className="page-wrapper">
-        <header>
-          <h3>COVID-19 Monitor</h3>
-        </header>
-
-        <Stats></Stats>
-      </div>
-    </body>
-  );
-}
-
-export default App;

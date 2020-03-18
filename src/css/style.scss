@@ -27,14 +27,26 @@ header {
 }
 
 .global-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  align-items: center;
   margin: 1em auto 2em auto;
-  height: 5em;
+  padding: 1em 0;
   width: 90%;
   border-radius: 10px;
-  box-shadow: 3px 4px 8px 1px rgb(15, 15, 15), -3px -4px 8px 1px rgb(99, 99, 99);
+  box-shadow: 3px 4px 8px 1px rgb(15, 15, 15), -3px -4px 8px 1px rgb(78, 78, 78);
+
+  .global-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    margin-bottom: 0.7em;
+  }
+  .global-daily {
+    small {
+      display: inline-block;
+      color: rgba(255, 255, 255, 0.705);
+      line-height: 0.8em;
+      margin-top: 5px;
+    }
+  }
   h4 {
     font-family: Roboto;
   }
@@ -61,7 +73,7 @@ header {
   align-items: center;
   height: 7.5em;
   margin: 2em auto;
-  box-shadow: 3px 4px 8px 1px rgb(15, 15, 15), -3px -4px 8px 1px rgb(99, 99, 99);
+  box-shadow: 3px 4px 8px 1px rgb(15, 15, 15), -3px -4px 8px 1px rgb(78, 78, 78);
   p {
     font-size: 1.3em;
   }
