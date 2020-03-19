@@ -9,19 +9,23 @@ function useStats(url) {
       setStats(data);
     }
     fetchData();
-  }, []);
+  }, [url]);
   return stats;
 }
 
 export default function Global() {
   const statsGlobal = useStats("https://covid19.mathdro.id/api/");
   const chart = useStats("https://covid19.mathdro.id/api/daily");
+  const countries = useStats(
+    "https://coronavirus-19-api.herokuapp.com/countries"
+  );
 
   if (!statsGlobal) return <p className="loading">Loading....</p>;
   if (!chart) return <p className="loading">Loading....</p>;
+  if (!countries) return <p className="loading">Loading....</p>;
 
-  let chartData = chart.map(data => data.totalConfirmed);
-  console.log(chart[chart.length - 1].deltaConfirmed);
+  // let chartData = chart.map(data => data.totalConfirmed);
+  // console.log(countries[1]);
 
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -63,6 +67,53 @@ export default function Global() {
           <small>
             Today recovered: {chart[chart.length - 1].deltaRecovered}
           </small>
+        </div>
+      </div>
+
+      <div className="countries-wrapper">
+        <div className="country">
+          <h3>{countries[0].country}</h3>
+          <div className="country-stats">
+            <p className="infected-val">
+              {numberWithCommas(countries[0].cases)}
+            </p>
+            <p className="recovered-val">
+              {numberWithCommas(countries[0].recovered)}
+            </p>
+            <p className="deaths-val">
+              {numberWithCommas(countries[0].deaths)}
+            </p>
+          </div>
+        </div>
+
+        <div className="country">
+          <h3>{countries[1].country}</h3>
+          <div className="country-stats">
+            <p className="infected-val">
+              {numberWithCommas(countries[1].cases)}
+            </p>
+            <p className="recovered-val">
+              {numberWithCommas(countries[1].recovered)}
+            </p>
+            <p className="deaths-val">
+              {numberWithCommas(countries[1].deaths)}
+            </p>
+          </div>
+        </div>
+
+        <div className="country">
+          <h3>{countries[2].country}</h3>
+          <div className="country-stats">
+            <p className="infected-val">
+              {numberWithCommas(countries[2].cases)}
+            </p>
+            <p className="recovered-val">
+              {numberWithCommas(countries[2].recovered)}
+            </p>
+            <p className="deaths-val">
+              {numberWithCommas(countries[2].deaths)}
+            </p>
+          </div>
         </div>
       </div>
     </div>

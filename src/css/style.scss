@@ -26,8 +26,32 @@ header {
   }
 }
 
+.infected-val {
+  color: #64818b;
+}
+.recovered-val {
+  color: #7ba346;
+}
+.deaths-val {
+  color: #c51221;
+}
+
+.countries-wrapper {
+  margin-bottom: 1.5em;
+
+  .country {
+    display: grid;
+    width: 90%;
+    margin: 0 auto 1em auto;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    border-left: 2px solid #4c5a6d;
+    border-right: 2px solid #4c5a6d;
+  }
+}
+
 .global-wrapper {
-  margin: 1em auto 2em auto;
+  margin: 1em auto 1.5em auto;
   padding: 1em 0;
   width: 90%;
   border-radius: 10px;
@@ -50,15 +74,7 @@ header {
   h4 {
     font-family: Roboto;
   }
-  .infected-val {
-    color: #64818b;
-  }
-  .recovered-val {
-    color: #7ba346;
-  }
-  .deaths-val {
-    color: #c51221;
-  }
+
   .global-stats {
     p {
       font-size: 0.9em;
@@ -97,6 +113,13 @@ header {
   margin-top: 1em;
 }
 
+.exchange {
+  margin-bottom: 1.5em;
+  h4 {
+    display: inline;
+  }
+}
+
 footer {
   margin-bottom: 1em;
   p {
@@ -123,6 +146,12 @@ footer {
   }
   .global-wrapper {
     width: 60%;
+  }
+
+  .countries-wrapper {
+    .country {
+      width: 60%;
+    }
   }
   .title {
     margin-top: 1em;

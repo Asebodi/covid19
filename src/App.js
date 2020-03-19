@@ -11,73 +11,29 @@ function useStats(url) {
       setStats(data);
     }
     fetchData();
-  }, []);
+  }, [url]);
   return stats;
-}
-
-function GlobalNot() {
-  const statsGlobal = useStats("https://covid19.mathdro.id/api/");
-  const chart = useStats("https://covid19.mathdro.id/api/daily");
-
-  if (!statsGlobal) return <p className="loading">Loading....</p>;
-  if (!chart) return <p className="loading">Loading....</p>;
-
-  let chartData = chart.map(data => data.totalConfirmed);
-  console.log(chart[chart.length - 1].deltaConfirmed);
-
-  function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  }
-
-  return (
-    <div>
-      <h4 className="title">WORLDWIDE</h4>
-
-      <div className="global-wrapper">
-        <div className="global-grid">
-          <div className="global-stats">
-            <p>Confirmed</p>
-            <h4 className="infected-val">
-              {numberWithCommas(statsGlobal.confirmed.value)}
-            </h4>
-          </div>
-
-          <div className="global-stats">
-            <p>Recovered</p>
-            <h4 className="recovered-val">
-              {numberWithCommas(statsGlobal.recovered.value)}
-            </h4>
-          </div>
-
-          <div className="global-stats">
-            <p>Deaths</p>
-            <h4 className="deaths-val">
-              {numberWithCommas(statsGlobal.deaths.value)}
-            </h4>
-          </div>
-        </div>
-
-        <div className="global-daily">
-          <small>
-            Today confirmed: {chart[chart.length - 1].deltaConfirmed}
-          </small>
-          <br />
-          <small>
-            Today recovered: {chart[chart.length - 1].deltaRecovered}
-          </small>
-        </div>
-      </div>
-    </div>
-  );
 }
 
 function Stats() {
   const format = require("date-format");
   const stats = useStats("https://covid19.mathdro.id/api/countries/ID");
+  const stats2 = useStats(
+    "https://coronavirus-19-api.herokuapp.com/countries/indonesia"
+  );
   const statsGlobal = useStats("https://covid19.mathdro.id/api/");
+  const exchange = useStats(
+    "https://openexchangerates.org/api/latest.json?app_id=54c9fa765c4b4c49840a06ef6142e6d1"
+  );
+
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
 
   if (!stats) return <p className="loading">Loading....</p>;
+  if (!stats2) return <p className="loading">Loading....</p>;
   if (!statsGlobal) return <p className="loading">Loading....</p>;
+  if (!exchange) return <p className="loading">Loading....</p>;
 
   return (
     <div>
@@ -88,18 +44,26 @@ function Stats() {
         <div className="desktop-flex">
           <div className="stats-wrapper infected">
             <p>Confirmed:</p>
-            <h4 className="infected-val">{stats.confirmed.value}</h4>
+            <h4 className="infected-val">{stats2.cases}</h4>
+            <small>Today: {stats2.todayCases}</small>
           </div>
 
           <div className="stats-wrapper recovered">
             <p>Recovered:</p>
-            <h4 className="recovered-val">{stats.recovered.value}</h4>
+            <h4 className="recovered-val">{stats2.recovered}</h4>
+            <small>Active: {stats2.active}</small>
           </div>
 
           <div className="stats-wrapper deaths">
             <p>Deaths:</p>
-            <h4 className="deaths-val">{stats.deaths.value}</h4>
+            <h4 className="deaths-val">{stats2.deaths}</h4>
+            <small>Today: {stats2.todayDeaths}</small>
           </div>
+        </div>
+
+        <div className="exchange">
+          <small>$1 USD = </small>
+          <h4>Rp {numberWithCommas(exchange.rates.IDR)}</h4>
         </div>
       </main>
 
