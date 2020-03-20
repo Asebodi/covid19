@@ -50,6 +50,49 @@ header {
   }
 }
 
+.province-wrapper {
+  width: 90%;
+  overflow: hidden;
+  margin: 0 auto;
+  display: grid;
+  padding: 1em 0.5em 0 0.5em;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 10px;
+  box-shadow: 3px 4px 8px 1px rgb(15, 15, 15), -3px -4px 8px 1px rgb(78, 78, 78);
+  .province {
+    margin: 0 5px;
+  }
+  .province-stats {
+    display: flex;
+    justify-content: center;
+    .invected-province {
+      margin-right: 2px solid #4c5a6d;
+    }
+    h4 {
+      margin: 0.4em 0.3em 1.5em 0.3em;
+      // border-left: 1px solid #4c5a6d;
+      // border-right: 1px solid #4c5a6d;
+    }
+  }
+}
+
+.province-title {
+  margin-bottom: 1em;
+}
+
+.province-more {
+  margin-top: 1em;
+  margin-bottom: 1.5em;
+  text-decoration: underline;
+}
+
+.false {
+  height: 220px;
+}
+.true {
+  height: auto;
+}
+
 .global-wrapper {
   margin: 1em auto 1.5em auto;
   padding: 1em 0;

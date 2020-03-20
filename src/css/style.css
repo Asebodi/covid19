@@ -58,6 +58,59 @@ header h3 {
   border-right: 2px solid #4c5a6d;
 }
 
+.province-wrapper {
+  width: 90%;
+  overflow: hidden;
+  margin: 0 auto;
+  display: -ms-grid;
+  display: grid;
+  padding: 1em 0.5em 0 0.5em;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  border-radius: 10px;
+  -webkit-box-shadow: 3px 4px 8px 1px #0f0f0f, -3px -4px 8px 1px #4e4e4e;
+          box-shadow: 3px 4px 8px 1px #0f0f0f, -3px -4px 8px 1px #4e4e4e;
+}
+
+.province-wrapper .province {
+  margin: 0 5px;
+}
+
+.province-wrapper .province-stats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.province-wrapper .province-stats .invected-province {
+  margin-right: 2px solid #4c5a6d;
+}
+
+.province-wrapper .province-stats h4 {
+  margin: 0.4em 0.3em 1.5em 0.3em;
+}
+
+.province-title {
+  margin-bottom: 1em;
+}
+
+.province-more {
+  margin-top: 1em;
+  margin-bottom: 1.5em;
+  text-decoration: underline;
+}
+
+.false {
+  height: 220px;
+}
+
+.true {
+  height: auto;
+}
+
 .global-wrapper {
   margin: 1em auto 1.5em auto;
   padding: 1em 0;
