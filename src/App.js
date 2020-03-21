@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Global from "./Global";
+import Chart from "./Chart";
 import "./css/style.css";
 
 function useStats(url) {
@@ -14,18 +15,39 @@ function useStats(url) {
   return stats;
 }
 
+function useChart() {
+  const [chart, setChart] = useState();
+  useEffect(() => {
+    async function fetchData() {
+      const data = await fetch(
+        "https://indonesia-covid-19.mathdro.id/api/harian"
+      ).then(res => res.json());
+      setChart(data);
+    }
+    fetchData();
+  }, []);
+
+  // if (!chart) return <p className="loading">Loading....</p>;
+
+  const chartArray = chart.data.map(active => [
+    active.fid,
+    active.jumlahpasiendalamperawatan
+  ]);
+
+  return chartArray;
+}
+
 function Stats() {
   const [drop, setDrop] = useState(false);
 
   const format = require("date-format");
-  const stats = useStats("https://covid19.mathdro.id/api/countries/ID");
   const stats2 = useStats(
     "https://coronavirus-19-api.herokuapp.com/countries/indonesia"
   );
   const statsGlobal = useStats("https://covid19.mathdro.id/api/");
-  const exchange = useStats(
-    "https://openexchangerates.org/api/latest.json?app_id=54c9fa765c4b4c49840a06ef6142e6d1"
-  );
+  // const exchange = useStats(
+  //   "https://openexchangerates.org/api/latest.json?app_id=54c9fa765c4b4c49840a06ef6142e6d1"
+  // );
 
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -35,10 +57,11 @@ function Stats() {
     setDrop(!drop);
   }
 
-  if (!stats) return <p className="loading">Loading....</p>;
   if (!stats2) return <p className="loading">Loading....</p>;
   if (!statsGlobal) return <p className="loading">Loading....</p>;
-  if (!exchange) return <p className="loading">Loading....</p>;
+  // if (!exchange) return <p className="loading">Loading....</p>;
+
+  // console.log(chartArray);
 
   return (
     <div>
@@ -46,6 +69,9 @@ function Stats() {
         <Global></Global>
 
         <h4>INDONESIA</h4>
+
+        <Chart></Chart>
+
         <div className="desktop-flex">
           <div className="stats-wrapper infected">
             <p>Confirmed:</p>
@@ -78,7 +104,7 @@ function Stats() {
 
         <div className="exchange">
           <small>$1 USD = </small>
-          <h4>Rp {numberWithCommas(exchange.rates.IDR)}</h4>
+          {/* <h4>Rp {numberWithCommas(exchange.rates.IDR)}</h4> */}
         </div>
       </main>
 
