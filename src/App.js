@@ -41,13 +41,12 @@ function Stats() {
   const [drop, setDrop] = useState(false);
 
   const format = require("date-format");
-  const stats2 = useStats(
-    "https://coronavirus-19-api.herokuapp.com/countries/indonesia"
-  );
+  const stats = useStats("https://indonesia-covid-19.mathdro.id/api/harian");
+  const stats2 = useStats("https://indonesia-covid-19.mathdro.id/api/");
   const statsGlobal = useStats("https://covid19.mathdro.id/api/");
-  // const exchange = useStats(
-  //   "https://openexchangerates.org/api/latest.json?app_id=54c9fa765c4b4c49840a06ef6142e6d1"
-  // );
+  const exchange = useStats(
+    "https://openexchangerates.org/api/latest.json?app_id=54c9fa765c4b4c49840a06ef6142e6d1"
+  );
 
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -58,8 +57,9 @@ function Stats() {
   }
 
   if (!stats2) return <p className="loading">Loading....</p>;
+  if (!stats) return <p className="loading">Loading....</p>;
   if (!statsGlobal) return <p className="loading">Loading....</p>;
-  // if (!exchange) return <p className="loading">Loading....</p>;
+  if (!exchange) return <p className="loading">Loading....</p>;
 
   // console.log(chartArray);
 
@@ -75,20 +75,37 @@ function Stats() {
         <div className="desktop-flex">
           <div className="stats-wrapper infected">
             <p>Confirmed:</p>
-            <h4 className="infected-val">{stats2.cases}</h4>
-            <small>Today: {stats2.todayCases}</small>
+            <h4 className="infected-val">{stats2.jumlahKasus}</h4>
+            <small>
+              Today:{" "}
+              {stats.data[stats.data.length - 1].jumlahKasusBaruperHari != null
+                ? stats.data[stats.data.length - 1].jumlahKasusBaruperHari
+                : "0"}
+            </small>
           </div>
 
           <div className="stats-wrapper recovered">
             <p>Recovered:</p>
-            <h4 className="recovered-val">{stats2.recovered}</h4>
-            <small>Active: {stats2.active}</small>
+            <h4 className="recovered-val">{stats2.sembuh}</h4>
+            <small>
+              Active:{" "}
+              {stats.data[stats.data.length - 1].jumlahpasiendalamperawatan !=
+              null
+                ? stats.data[stats.data.length - 1].jumlahpasiendalamperawatan
+                : "0"}
+            </small>
           </div>
 
           <div className="stats-wrapper deaths">
             <p>Deaths:</p>
-            <h4 className="deaths-val">{stats2.deaths}</h4>
-            <small>Today: {stats2.todayDeaths}</small>
+            <h4 className="deaths-val">{stats2.meninggal}</h4>
+            <small>
+              Today:{" "}
+              {stats.data[stats.data.length - 1].jumlahPasienMeninggal != null
+                ? stats.data[stats.data.length - 1].jumlahPasienMeninggal -
+                  stats.data[stats.data.length - 2].jumlahPasienMeninggal
+                : "0"}
+            </small>
           </div>
         </div>
 
@@ -104,7 +121,7 @@ function Stats() {
 
         <div className="exchange">
           <small>$1 USD = </small>
-          {/* <h4>Rp {numberWithCommas(exchange.rates.IDR)}</h4> */}
+          <h4>Rp {numberWithCommas(exchange.rates.IDR)}</h4>
         </div>
       </main>
 
@@ -137,15 +154,9 @@ function StatsProvince() {
       <div className="province" key={prov.kodeProvinsi}>
         <p>{prov.provinsi}</p>
         <div className="province-stats">
-          <h4 className="infected-val invected-province">
-            {prov.kasusTerkonfirmasiAkumulatif}
-          </h4>
-          <h4 className="recovered-val recovered-province">
-            {prov.kasusSembuhAkumulatif}
-          </h4>
-          <h4 className="deaths-val deaths-province">
-            {prov.kasusMeninggalAkumulatif}
-          </h4>
+          <h4 className="infected-val invected-province">{prov.kasusPosi}</h4>
+          <h4 className="recovered-val recovered-province">{prov.kasusSemb}</h4>
+          <h4 className="deaths-val deaths-province">{prov.kasusMeni}</h4>
         </div>
       </div>
     );

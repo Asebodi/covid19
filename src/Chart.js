@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
+  ResponsiveContainer,
   LineChart,
   Line,
   XAxis,
@@ -22,71 +23,79 @@ function useStats(url) {
 }
 
 export default function Chart() {
+  const [chartOpt, setChartOpt] = useState("active");
+
+  const ref = useRef(null);
+  useEffect(() => {
+    const width = ref.current ? ref.current.offsetWidth : 0;
+    console.log("width", width);
+  }, [ref.current]);
+
   const chartFetch = useStats(
     "https://indonesia-covid-19.mathdro.id/api/harian"
   );
 
   if (!chartFetch) return <p className="loading">Loading....</p>;
-  let chartData = {};
 
-  //   for (i = 0; i < chartFetch.data.length; i++) {
-  //     chartData.name = chartFetch.data.fid;
-  //     chartData.active = chartFetch.data.jumlahpasiendalamperawatan;
-  //   }
-
-  const chartKey = chartFetch.data.map(value => [value.fid]);
-  const chartVal = chartFetch.data.map(value => [
-    value.jumlahpasiendalamperawatan
-  ]);
-
-  var final = [];
+  var active = [];
   for (var key in chartFetch.data) {
-    final[key] = {
+    active[key] = {
       name: chartFetch.data[key].fid,
-      line: chartFetch.data[key].jumlahpasiendalamperawatan
+      cases: chartFetch.data[key].jumlahKasusKumulatif,
+      recovered: chartFetch.data[key].jumlahPasienSembuh,
+      deaths: chartFetch.data[key].jumlahPasienMeninggal
     };
   }
-  console.log(final);
+  console.log(active);
 
-  //   function chartObj() {
-  //     for (let x = 0; x < chartKey.length; x++) {
-  //       console.log(x);
-  //       //   return { name: chartKey[x], line: chartVal[x] };
-  //     }
-  //   }
+  var percentage = [];
+  for (var key in chartFetch.data) {
+    percentage[key] = {
+      name: chartFetch.data[key].fid,
+      line: chartFetch.data[key].persentasePasiendalamPerawatan
+    };
+  }
+  console.log(percentage);
 
-  //   //   const chartParse = JSON.parse(chartFetch);
-  //   console.log(chartKey.length);
-  //   console.log(chartObj());
-
-  const data = final;
-
-  return (
-    <div>
-      <LineChart
-        width={400}
-        height={300}
-        data={data}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Line
-          type="monotone"
-          dataKey="line"
-          stroke="#8884d8"
-          activeDot={{ r: 8 }}
-        />
-        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-      </LineChart>
-    </div>
-  );
+  if (chartOpt === "active") {
+    return (
+      <div className="chart">
+        <ResponsiveContainer width="100%" height={300}>
+          <LineChart data={active}>
+            {/* <CartesianGrid strokeDasharray="3 3" /> */}
+            <XAxis dataKey="name" />
+            {/* <YAxis /> */}
+            <Tooltip />
+            <Legend />
+            <Line type="monotone" dataKey="cases" stroke="#64818b" />
+            <Line type="monotone" dataKey="recovered" stroke="#7ba346" />
+            <Line type="monotone" dataKey="deaths" stroke="#c51221" />
+          </LineChart>
+        </ResponsiveContainer>
+        {/* <p onClick={() => setChartOpt("percentage")}>change</p> */}
+      </div>
+    );
+  } else if (chartOpt === "percentage") {
+    return (
+      <div className="chart">
+        <ResponsiveContainer width="100%" height={300}>
+          <LineChart data={percentage}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Line
+              type="monotone"
+              dataKey="line"
+              stroke="#8884d8"
+              activeDot={{ r: 8 }}
+            />
+            <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+          </LineChart>
+        </ResponsiveContainer>
+        {/* <p onClick={() => setChartOpt("active")}>change</p> */}
+      </div>
+    );
+  }
 }

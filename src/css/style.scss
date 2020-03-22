@@ -76,6 +76,11 @@ header {
   }
 }
 
+.chart {
+  width: 80%;
+  margin: 0 auto 1em auto;
+}
+
 .province-title {
   margin-bottom: 1em;
 }
@@ -87,7 +92,7 @@ header {
 }
 
 .false {
-  height: 220px;
+  height: 150px;
 }
 .true {
   height: auto;
