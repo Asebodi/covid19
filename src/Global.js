@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ChartGlobal from "./ChartGlobal";
 
 function useStats(url) {
   const [stats, setStats] = useState();
@@ -35,6 +36,7 @@ export default function Global() {
       <h4 className="title">WORLDWIDE</h4>
 
       <div className="global-wrapper">
+        <ChartGlobal></ChartGlobal>
         <div className="global-grid">
           <div className="global-stats">
             <p>Confirmed</p>

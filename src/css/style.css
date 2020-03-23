@@ -94,8 +94,21 @@ header h3 {
 }
 
 .chart {
-  width: 80%;
-  margin: 0 auto 1em auto;
+  width: 85%;
+  margin: 1em auto 2em auto;
+}
+
+.chart-global {
+  -webkit-box-sizing: initial;
+          box-sizing: initial;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: -1;
+  border-radius: 10px;
 }
 
 .province-title {
@@ -117,6 +130,10 @@ header h3 {
 }
 
 .global-wrapper {
+  position: relative;
+  display: -ms-grid;
+  display: grid;
+  height: 130px;
   margin: 1em auto 1.5em auto;
   padding: 1em 0;
   width: 90%;

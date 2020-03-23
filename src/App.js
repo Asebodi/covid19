@@ -15,28 +15,6 @@ function useStats(url) {
   return stats;
 }
 
-function useChart() {
-  const [chart, setChart] = useState();
-  useEffect(() => {
-    async function fetchData() {
-      const data = await fetch(
-        "https://indonesia-covid-19.mathdro.id/api/harian"
-      ).then(res => res.json());
-      setChart(data);
-    }
-    fetchData();
-  }, []);
-
-  // if (!chart) return <p className="loading">Loading....</p>;
-
-  const chartArray = chart.data.map(active => [
-    active.fid,
-    active.jumlahpasiendalamperawatan
-  ]);
-
-  return chartArray;
-}
-
 function Stats() {
   const [drop, setDrop] = useState(false);
 
@@ -60,8 +38,6 @@ function Stats() {
   if (!stats) return <p className="loading">Loading....</p>;
   if (!statsGlobal) return <p className="loading">Loading....</p>;
   if (!exchange) return <p className="loading">Loading....</p>;
-
-  // console.log(chartArray);
 
   return (
     <div>
@@ -150,16 +126,20 @@ function StatsProvince() {
   const provinceArray = Array.from(statsProvince.data);
 
   const provinceOutput = provinceArray.map(prov => {
-    return (
-      <div className="province" key={prov.kodeProvinsi}>
-        <p>{prov.provinsi}</p>
-        <div className="province-stats">
-          <h4 className="infected-val invected-province">{prov.kasusPosi}</h4>
-          <h4 className="recovered-val recovered-province">{prov.kasusSemb}</h4>
-          <h4 className="deaths-val deaths-province">{prov.kasusMeni}</h4>
+    if (prov.kasusPosi > 0) {
+      return (
+        <div className="province" key={prov.kodeProvinsi}>
+          <p>{prov.provinsi}</p>
+          <div className="province-stats">
+            <h4 className="infected-val invected-province">{prov.kasusPosi}</h4>
+            <h4 className="recovered-val recovered-province">
+              {prov.kasusSemb}
+            </h4>
+            <h4 className="deaths-val deaths-province">{prov.kasusMeni}</h4>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   });
 
   return provinceOutput;

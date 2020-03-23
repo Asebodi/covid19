@@ -9,6 +9,7 @@ body {
   font-family: Montserrat, "sans-serif";
   text-align: center;
   background-color: #222831;
+  // background-color: #313946;
   color: #e3f6f5;
 }
 
@@ -77,8 +78,20 @@ header {
 }
 
 .chart {
-  width: 80%;
-  margin: 0 auto 1em auto;
+  width: 85%;
+  margin: 1em auto 2em auto;
+}
+
+.chart-global {
+  box-sizing: initial;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: -1;
+  border-radius: 10px;
 }
 
 .province-title {
@@ -99,6 +112,9 @@ header {
 }
 
 .global-wrapper {
+  position: relative;
+  display: grid;
+  height: 130px;
   margin: 1em auto 1.5em auto;
   padding: 1em 0;
   width: 90%;
