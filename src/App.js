@@ -92,7 +92,7 @@ function Stats() {
               {stats.data[stats.data.length - 1].jumlahpasiendalamperawatan !=
               null
                 ? stats.data[stats.data.length - 1].jumlahpasiendalamperawatan
-                : "0"}
+                : stats.data[stats.data.length - 2].jumlahpasiendalamperawatan}
             </small>
           </div>
 
