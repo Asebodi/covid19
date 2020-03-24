@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Global from "./Global";
 import Chart from "./Chart";
+import CountriesTop3 from "./CountriesTop3";
 import "./css/style.css";
 
 function useStats(url) {
@@ -43,6 +44,7 @@ function Stats() {
     <div>
       <main>
         <Global></Global>
+        <CountriesTop3></CountriesTop3>
 
         <h4>INDONESIA</h4>
 

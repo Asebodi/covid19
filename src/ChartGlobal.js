@@ -16,7 +16,7 @@ function useStats(url) {
 export default function Chart() {
   const chartFetch = useStats("https://covid19.mathdro.id/api/daily");
 
-  if (!chartFetch) return <p className="loading">Loading....</p>;
+  if (!chartFetch) return <p>Loading....</p>;
 
   var active = [];
   for (var key in chartFetch) {
