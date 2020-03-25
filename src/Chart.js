@@ -22,7 +22,7 @@ function useStats(url) {
 }
 
 export default function Chart() {
-  const [chartOpt, setChartOpt] = useState("active");
+  // const [chartOpt, setChartOpt] = useState("active");
 
   const chartFetch = useStats(
     "https://indonesia-covid-19.mathdro.id/api/harian"

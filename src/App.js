@@ -87,6 +87,35 @@ function Stats() {
           </div>
         </div>
 
+        <div className="stats-percent">
+          <div className="percentage-wrapper">
+            <small>Recovery</small>
+            <h4 className="recovered-val">
+              {stats.data[stats.data.length - 1].persentasePasienSembuh != null
+                ? stats.data[
+                    stats.data.length - 1
+                  ].persentasePasienSembuh.toFixed(2) + "%"
+                : stats.data[
+                    stats.data.length - 2
+                  ].persentasePasienSembuh.toFixed(2) + "%"}
+            </h4>
+          </div>
+
+          <div className="percentage-wrapper">
+            <small>Death</small>
+            <h4 className="deaths-val">
+              {stats.data[stats.data.length - 1].persentasePasienMeninggal !=
+              null
+                ? stats.data[
+                    stats.data.length - 1
+                  ].persentasePasienMeninggal.toFixed(2) + "%"
+                : stats.data[
+                    stats.data.length - 2
+                  ].persentasePasienMeninggal.toFixed(2) + "%"}
+            </h4>
+          </div>
+        </div>
+
         <h3 className="province-title">Cases by Province</h3>
 
         <div className={"province-wrapper " + drop}>
@@ -109,8 +138,7 @@ function Stats() {
           {format.asString(
             "dd-MM-yyyy hh:mm:ss",
             new Date(statsGlobal.lastUpdate)
-          )}{" "}
-          WIB
+          )}
         </p>
         <small>raharditya.com</small>
       </footer>

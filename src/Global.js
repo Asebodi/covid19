@@ -19,10 +19,10 @@ function numberWithCommas(x) {
 
 export default function Global() {
   const statsGlobal = useStats("https://covid19.mathdro.id/api/");
-  // const chart = useStats("https://covid19.mathdro.id/api/daily");
+  const chart = useStats("https://covid19.mathdro.id/api/daily");
 
   if (!statsGlobal) return <p className="loading">Loading....</p>;
-  // if (!chart) return <p className="loading">Loading....</p>;
+  if (!chart) return <p className="loading">Loading....</p>;
 
   // let chartData = chart.map(data => data.totalConfirmed);
   // console.log(countries[1]);
@@ -58,18 +58,16 @@ export default function Global() {
 
         <div className="global-daily">
           <small>
-            Today confirmed: Unavailable
-            {/* {chart[chart.length - 1].deltaConfirmed} */}
+            Delta confirmed: {chart[chart.length - 1].deltaConfirmed}
           </small>
           <br />
           <small>
-            Today recovered: Unavailable
-            {/* {chart[chart.length - 1].deltaRecovered} */}
+            Delta deaths:{" "}
+            {chart[chart.length - 1].deaths.total -
+              chart[chart.length - 2].deaths.total}
           </small>
         </div>
       </div>
-
-      {/* <CountriesTop3></CountriesTop3> */}
     </div>
   );
 }

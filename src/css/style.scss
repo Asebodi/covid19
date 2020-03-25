@@ -102,12 +102,27 @@ header {
   margin-top: 1em;
   margin-bottom: 1.5em;
   text-decoration: underline;
+  cursor: pointer;
+}
+
+.countries-more {
+  margin-top: 1em;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .false {
   height: 150px;
 }
 .true {
+  height: auto;
+}
+
+.false-countries {
+  height: 205px;
+  overflow: hidden;
+}
+.true-countries {
   height: auto;
 }
 
@@ -173,6 +188,14 @@ header {
   }
 }
 
+.stats-percent {
+  width: 70%;
+  margin: -1em auto 1.2em auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+}
+
 .infected {
   margin-top: 1em;
 }
@@ -209,6 +232,9 @@ footer {
     }
   }
   .global-wrapper {
+    width: 60%;
+  }
+  .province-wrapper {
     width: 60%;
   }
 

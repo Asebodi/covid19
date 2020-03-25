@@ -16,7 +16,7 @@ function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-export default function CountriesTop3() {
+function Countries() {
   const countries = useStats(
     "https://coronavirus-19-api.herokuapp.com/countries"
   );
@@ -24,7 +24,7 @@ export default function CountriesTop3() {
   if (!countries) return <p className="loading">Loading....</p>;
 
   return (
-    <div className="countries-wrapper">
+    <div>
       <div className="country">
         <h3>{countries[0].country}</h3>
         <div className="country-stats">
@@ -57,6 +57,59 @@ export default function CountriesTop3() {
           <p className="deaths-val">{numberWithCommas(countries[2].deaths)}</p>
         </div>
       </div>
+
+      <div className="country">
+        <h3>{countries[3].country}</h3>
+        <div className="country-stats">
+          <p className="infected-val">{numberWithCommas(countries[3].cases)}</p>
+          <p className="recovered-val">
+            {numberWithCommas(countries[3].recovered)}
+          </p>
+          <p className="deaths-val">{numberWithCommas(countries[3].deaths)}</p>
+        </div>
+      </div>
+
+      <div className="country">
+        <h3>{countries[4].country}</h3>
+        <div className="country-stats">
+          <p className="infected-val">{numberWithCommas(countries[4].cases)}</p>
+          <p className="recovered-val">
+            {numberWithCommas(countries[4].recovered)}
+          </p>
+          <p className="deaths-val">{numberWithCommas(countries[4].deaths)}</p>
+        </div>
+      </div>
+
+      <div className="country">
+        <h3>{countries[5].country}</h3>
+        <div className="country-stats">
+          <p className="infected-val">{numberWithCommas(countries[5].cases)}</p>
+          <p className="recovered-val">
+            {numberWithCommas(countries[5].recovered)}
+          </p>
+          <p className="deaths-val">{numberWithCommas(countries[5].deaths)}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function CountriesTop3() {
+  const [countriesMore, setCountriesMore] = useState(false);
+
+  function dropCountries() {
+    setCountriesMore(!countriesMore);
+  }
+
+  return (
+    <div className="countries-wrapper">
+      <div className={countriesMore + "-countries"}>
+        <Countries></Countries>
+      </div>
+
+      <small onClick={() => dropCountries()} className="countries-more">
+        {countriesMore ? "View less" : "View more"}
+      </small>
     </div>
   );
 }

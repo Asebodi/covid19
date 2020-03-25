@@ -119,6 +119,13 @@ header h3 {
   margin-top: 1em;
   margin-bottom: 1.5em;
   text-decoration: underline;
+  cursor: pointer;
+}
+
+.countries-more {
+  margin-top: 1em;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .false {
@@ -126,6 +133,15 @@ header h3 {
 }
 
 .true {
+  height: auto;
+}
+
+.false-countries {
+  height: 205px;
+  overflow: hidden;
+}
+
+.true-countries {
   height: auto;
 }
 
@@ -203,6 +219,18 @@ header h3 {
   color: #c51221;
 }
 
+.stats-percent {
+  width: 70%;
+  margin: -1em auto 1.2em auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .infected {
   margin-top: 1em;
 }
@@ -244,6 +272,9 @@ footer small {
     margin: 1.5em 1em 2.5em 1em;
   }
   .global-wrapper {
+    width: 60%;
+  }
+  .province-wrapper {
     width: 60%;
   }
   .countries-wrapper .country {
