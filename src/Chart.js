@@ -56,7 +56,7 @@ export default function Chart() {
       <ResponsiveContainer width="100%" height={300}>
         <LineChart data={active}>
           <XAxis dataKey="name" />
-          <YAxis width={35} />
+          <YAxis width={40} />
           <Tooltip />
           <Legend />
           <Line
