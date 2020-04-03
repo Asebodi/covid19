@@ -22,7 +22,7 @@ function useStats(url) {
 }
 
 export default function Chart() {
-  // const [chartOpt, setChartOpt] = useState("active");
+  const [chartOpt, setChartOpt] = useState("linear");
 
   const chartFetch = useStats(
     "https://indonesia-covid-19.mathdro.id/api/harian"
@@ -40,129 +40,154 @@ export default function Chart() {
       active: chartFetch.data[key].jumlahpasiendalamperawatan
     };
   }
-  console.log(active);
 
-  // var percentage = [];
-  // for (var key in chartFetch.data) {
-  //   percentage[key] = {
-  //     name: chartFetch.data[key].fid,
-  //     line: chartFetch.data[key].persentasePasiendalamPerawatan
-  //   };
-  // }
-  // console.log(percentage);
+  var daily = [];
+  for (var day in chartFetch.data) {
+    daily[day] = {
+      name: chartFetch.data[day].fid,
+      dailyCases: chartFetch.data[day].jumlahKasusBaruperHari,
+      dailyRecovered: chartFetch.data[day].jumlahKasusSembuhperHari,
+      dailyDeaths: chartFetch.data[day].jumlahKasusMeninggalperHari
+    };
+  }
 
-  return (
-    <div className="chart">
-      <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={active}>
-          <XAxis dataKey="name" />
-          <YAxis width={40} />
-          <Tooltip />
-          <Legend />
-          <Line
-            type="monotone"
-            strokeWidth={2}
-            dot={false}
-            dataKey="cases"
-            stroke="#64818b"
-            name="Cases"
-          />
-          <Line
-            type="monotone"
-            strokeWidth={2}
-            dot={false}
-            dataKey="recovered"
-            stroke="#7ba346"
-            name="Recovered"
-          />
-          <Line
-            type="monotone"
-            strokeWidth={2}
-            dot={false}
-            dataKey="deaths"
-            stroke="#c51221"
-            name="Deaths"
-          />
-          <Line
-            type="monotone"
-            strokeWidth={2}
-            dot={false}
-            dataKey="active"
-            stroke="#866358"
-            name="Active"
-          />
-        </LineChart>
-      </ResponsiveContainer>
-    </div>
-  );
+  function setLog() {
+    setChartOpt("log");
+  }
 
-  // if (chartOpt === "active") {
-  //   return (
-  //     <div className="chart">
-  //       <ResponsiveContainer width="100%" height={300}>
-  //         <LineChart data={active}>
-  //           <XAxis dataKey="name" />
-  //           <YAxis width={35} />
-  //           <Tooltip />
-  //           <Legend />
-  //           <Line
-  //             type="monotone"
-  //             strokeWidth={2}
-  //             dot={false}
-  //             dataKey="cases"
-  //             stroke="#64818b"
-  //             name="Cases"
-  //           />
-  //           <Line
-  //             type="monotone"
-  //             strokeWidth={2}
-  //             dot={false}
-  //             dataKey="recovered"
-  //             stroke="#7ba346"
-  //             name="Recovered"
-  //           />
-  //           <Line
-  //             type="monotone"
-  //             strokeWidth={2}
-  //             dot={false}
-  //             dataKey="deaths"
-  //             stroke="#c51221"
-  //             name="Deaths"
-  //           />
-  //           <Line
-  //             type="monotone"
-  //             strokeWidth={2}
-  //             dot={false}
-  //             dataKey="active"
-  //             stroke="#866358"
-  //             name="Active"
-  //           />
-  //         </LineChart>
-  //       </ResponsiveContainer>
-  //       {/* <p onClick={() => setChartOpt("percentage")}>change</p> */}
-  //     </div>
-  //   );
-  // } else if (chartOpt === "percentage") {
-  //   return (
-  //     <div className="chart">
-  //       <ResponsiveContainer width="100%" height={300}>
-  //         <LineChart data={percentage}>
-  //           <CartesianGrid strokeDasharray="3 3" />
-  //           <XAxis dataKey="name" />
-  //           <YAxis />
-  //           <Tooltip />
-  //           <Legend />
-  //           <Line
-  //             type="monotone"
-  //             dataKey="line"
-  //             stroke="#8884d8"
-  //             activeDot={{ r: 8 }}
-  //           />
-  //           <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-  //         </LineChart>
-  //       </ResponsiveContainer>
-  //       {/* <p onClick={() => setChartOpt("active")}>change</p> */}
-  //     </div>
-  //   );
-  // }
+  function setLinear() {
+    setChartOpt("linear");
+  }
+
+  function setDaily() {
+    setChartOpt("daily");
+  }
+
+  switch (chartOpt) {
+    case "linear":
+      return (
+        <div className="chart">
+          <div className="chart-toggle">
+            <h4>Linear</h4>
+            <small onClick={() => setLog()}>Logarithmic</small>
+            <small onClick={() => setDaily()}>Daily</small>
+          </div>
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={active}>
+              <XAxis dataKey="name" />
+              <YAxis width={45} />
+              <Tooltip />
+              <Legend />
+              <Line
+                type="monotone"
+                strokeWidth={2}
+                dot={false}
+                dataKey="cases"
+                stroke="#64818b"
+                name="Cases"
+              />
+              <Line
+                type="monotone"
+                strokeWidth={2}
+                dot={false}
+                dataKey="recovered"
+                stroke="#7ba346"
+                name="Recovered"
+              />
+              <Line
+                type="monotone"
+                strokeWidth={2}
+                dot={false}
+                dataKey="deaths"
+                stroke="#c51221"
+                name="Deaths"
+              />
+              <Line
+                type="monotone"
+                strokeWidth={2}
+                dot={false}
+                dataKey="active"
+                stroke="#866358"
+                name="Active"
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      );
+
+    case "log":
+      return (
+        <div className="chart">
+          <div className="chart-toggle">
+            <small onClick={() => setLinear()}>Linear</small>
+            <h4>Logarithmic</h4>
+            <small onClick={() => setDaily()}>Daily</small>
+          </div>
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={active}>
+              <XAxis dataKey="name" />
+              <YAxis
+                width={40}
+                scale="log"
+                domain={["auto", "auto"]}
+                allowDataOverflow
+              />
+              <Tooltip />
+              <Legend />
+              <Line
+                type="monotone"
+                strokeWidth={2}
+                dot={false}
+                dataKey="cases"
+                stroke="#64818b"
+                name="Cases"
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      );
+
+    case "daily":
+      return (
+        <div className="chart">
+          <div className="chart-toggle">
+            <small onClick={() => setLinear()}>Linear</small>
+            <small onClick={() => setLog()}>Logarithmic</small>
+            <h4>Daily</h4>
+          </div>
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={daily}>
+              <XAxis dataKey="fid" />
+              <YAxis width={35} />
+              <Tooltip />
+              <Legend />
+              <Line
+                type="monotone"
+                strokeWidth={2}
+                dot={false}
+                dataKey="dailyCases"
+                stroke="#64818b"
+                name="Cases"
+              />
+              <Line
+                type="monotone"
+                strokeWidth={2}
+                dot={false}
+                dataKey="dailyRecovered"
+                stroke="#7ba346"
+                name="Recovered"
+              />
+              <Line
+                type="monotone"
+                strokeWidth={2}
+                dot={false}
+                dataKey="dailyDeaths"
+                stroke="#c51221"
+                name="Deaths"
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      );
+  }
 }

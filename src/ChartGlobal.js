@@ -38,6 +38,7 @@ export default function Chart() {
             fill="#313946"
             strokeWidth={3}
             dot={false}
+            // isAnimationActive={false}
           />
         </AreaChart>
       </ResponsiveContainer>

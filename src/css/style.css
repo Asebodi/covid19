@@ -13,6 +13,14 @@ body {
   color: #e3f6f5;
 }
 
+a {
+  color: white;
+  font-size: 0.9em;
+  display: inline-block;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
 .page-wrapper {
   width: 90%;
   margin: 0 auto;
@@ -95,7 +103,32 @@ header h3 {
 
 .chart {
   width: 85%;
-  margin: 1em auto 2em auto;
+  margin: 0.5em auto 2em auto;
+}
+
+.chart .recharts-legend-item-text {
+  font-size: 0.9em;
+}
+
+.chart .chart-toggle {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 1em;
+}
+
+.chart .chart-toggle h4 {
+  color: #80e792;
+  font-size: 0.9em;
+}
+
+.chart .chart-toggle small {
+  color: #999999;
+  cursor: pointer;
 }
 
 .chart-global {
@@ -137,7 +170,7 @@ header h3 {
 }
 
 .false-countries {
-  height: 205px;
+  height: 210px;
   overflow: hidden;
 }
 
@@ -221,7 +254,7 @@ header h3 {
 
 .stats-percent {
   width: 70%;
-  margin: -1em auto 1.2em auto;
+  margin: -1em auto 1.3em auto;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr;
