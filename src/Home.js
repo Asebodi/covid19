@@ -9,7 +9,7 @@ function useStats(url) {
   const [stats, setStats] = useState();
   useEffect(() => {
     async function fetchData() {
-      const data = await fetch(url).then(res => res.json());
+      const data = await fetch(url).then((res) => res.json());
       setStats(data);
     }
     fetchData();
@@ -155,7 +155,7 @@ function StatsProvince() {
 
   const provinceArray = Array.from(statsProvince.data);
 
-  const provinceOutput = provinceArray.map(prov => {
+  const provinceOutput = provinceArray.map((prov) => {
     if (prov.kasusPosi > 0) {
       return (
         <div className="province" key={prov.kodeProvinsi}>

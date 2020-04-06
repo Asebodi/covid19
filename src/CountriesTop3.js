@@ -4,7 +4,7 @@ function useStats(url) {
   const [stats, setStats] = useState();
   useEffect(() => {
     async function fetchData() {
-      const data = await fetch(url).then(res => res.json());
+      const data = await fetch(url).then((res) => res.json());
       setStats(data);
     }
     fetchData();
@@ -25,17 +25,6 @@ function Countries() {
 
   return (
     <div>
-      <div className="country">
-        <h3>{countries[0].country}</h3>
-        <div className="country-stats">
-          <p className="infected-val">{numberWithCommas(countries[0].cases)}</p>
-          <p className="recovered-val">
-            {numberWithCommas(countries[0].recovered)}
-          </p>
-          <p className="deaths-val">{numberWithCommas(countries[0].deaths)}</p>
-        </div>
-      </div>
-
       <div className="country">
         <h3>{countries[1].country}</h3>
         <div className="country-stats">
@@ -88,6 +77,17 @@ function Countries() {
             {numberWithCommas(countries[5].recovered)}
           </p>
           <p className="deaths-val">{numberWithCommas(countries[5].deaths)}</p>
+        </div>
+      </div>
+
+      <div className="country">
+        <h3>{countries[6].country}</h3>
+        <div className="country-stats">
+          <p className="infected-val">{numberWithCommas(countries[6].cases)}</p>
+          <p className="recovered-val">
+            {numberWithCommas(countries[6].recovered)}
+          </p>
+          <p className="deaths-val">{numberWithCommas(countries[6].deaths)}</p>
         </div>
       </div>
     </div>
