@@ -23,71 +23,73 @@ function Countries() {
 
   if (!countries) return <p className="loading">Loading....</p>;
 
+  const country = countries.slice(8, 14);
+
   return (
     <div>
       <div className="country">
-        <h3>{countries[1].country}</h3>
+        <h3>{country[0].country}</h3>
         <div className="country-stats">
-          <p className="infected-val">{numberWithCommas(countries[1].cases)}</p>
+          <p className="infected-val">{numberWithCommas(country[0].cases)}</p>
           <p className="recovered-val">
-            {numberWithCommas(countries[1].recovered)}
+            {numberWithCommas(country[0].recovered)}
           </p>
-          <p className="deaths-val">{numberWithCommas(countries[1].deaths)}</p>
+          <p className="deaths-val">{numberWithCommas(country[0].deaths)}</p>
         </div>
       </div>
 
       <div className="country">
-        <h3>{countries[2].country}</h3>
+        <h3>{country[1].country}</h3>
         <div className="country-stats">
-          <p className="infected-val">{numberWithCommas(countries[2].cases)}</p>
+          <p className="infected-val">{numberWithCommas(country[1].cases)}</p>
           <p className="recovered-val">
-            {numberWithCommas(countries[2].recovered)}
+            {numberWithCommas(country[1].recovered)}
           </p>
-          <p className="deaths-val">{numberWithCommas(countries[2].deaths)}</p>
+          <p className="deaths-val">{numberWithCommas(country[1].deaths)}</p>
         </div>
       </div>
 
       <div className="country">
-        <h3>{countries[3].country}</h3>
+        <h3>{country[2].country}</h3>
         <div className="country-stats">
-          <p className="infected-val">{numberWithCommas(countries[3].cases)}</p>
+          <p className="infected-val">{numberWithCommas(country[2].cases)}</p>
           <p className="recovered-val">
-            {numberWithCommas(countries[3].recovered)}
+            {numberWithCommas(country[2].recovered)}
           </p>
-          <p className="deaths-val">{numberWithCommas(countries[3].deaths)}</p>
+          <p className="deaths-val">{numberWithCommas(country[2].deaths)}</p>
         </div>
       </div>
 
       <div className="country">
-        <h3>{countries[4].country}</h3>
+        <h3>{country[3].country}</h3>
         <div className="country-stats">
-          <p className="infected-val">{numberWithCommas(countries[4].cases)}</p>
+          <p className="infected-val">{numberWithCommas(country[3].cases)}</p>
           <p className="recovered-val">
-            {numberWithCommas(countries[4].recovered)}
+            {numberWithCommas(country[3].recovered)}
           </p>
-          <p className="deaths-val">{numberWithCommas(countries[4].deaths)}</p>
+          <p className="deaths-val">{numberWithCommas(country[3].deaths)}</p>
         </div>
       </div>
 
       <div className="country">
-        <h3>{countries[5].country}</h3>
+        <h3>{country[4].country}</h3>
         <div className="country-stats">
-          <p className="infected-val">{numberWithCommas(countries[5].cases)}</p>
+          <p className="infected-val">{numberWithCommas(country[4].cases)}</p>
           <p className="recovered-val">
-            {numberWithCommas(countries[5].recovered)}
+            {numberWithCommas(country[4].recovered)}
           </p>
-          <p className="deaths-val">{numberWithCommas(countries[5].deaths)}</p>
+          <p className="deaths-val">{numberWithCommas(country[4].deaths)}</p>
         </div>
       </div>
 
       <div className="country">
-        <h3>{countries[6].country}</h3>
+        <h3>{country[5].country}</h3>
         <div className="country-stats">
-          <p className="infected-val">{numberWithCommas(countries[6].cases)}</p>
+          <p className="infected-val">{numberWithCommas(country[5].cases)}</p>
           <p className="recovered-val">
-            {numberWithCommas(countries[6].recovered)}
+            {numberWithCommas(country[5].recovered)}
           </p>
-          <p className="deaths-val">{numberWithCommas(countries[6].deaths)}</p>
+          <p className="deaths-val">{numberWithCommas(country[5].deaths)}</p>
         </div>
       </div>
     </div>

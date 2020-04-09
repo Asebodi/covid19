@@ -158,7 +158,7 @@ function StatsProvince() {
   const provinceOutput = provinceArray.map((prov) => {
     if (prov.kasusPosi > 0) {
       return (
-        <div className="province" key={prov.kodeProvinsi}>
+        <div className="province" key={prov.kodeProvi}>
           <p>{prov.provinsi}</p>
           <div className="province-stats">
             <h4 className="infected-val invected-province">{prov.kasusPosi}</h4>
