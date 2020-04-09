@@ -6,14 +6,14 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  Legend
+  Legend,
 } from "recharts";
 
 function useStats(url) {
   const [stats, setStats] = useState();
   useEffect(() => {
     async function fetchData() {
-      const data = await fetch(url).then(res => res.json());
+      const data = await fetch(url).then((res) => res.json());
       setStats(data);
     }
     fetchData();
@@ -37,7 +37,7 @@ export default function Chart() {
       cases: chartFetch.data[key].jumlahKasusKumulatif,
       recovered: chartFetch.data[key].jumlahPasienSembuh,
       deaths: chartFetch.data[key].jumlahPasienMeninggal,
-      active: chartFetch.data[key].jumlahpasiendalamperawatan
+      active: chartFetch.data[key].jumlahpasiendalamperawatan,
     };
   }
 
@@ -47,7 +47,7 @@ export default function Chart() {
       name: chartFetch.data[day].fid,
       dailyCases: chartFetch.data[day].jumlahKasusBaruperHari,
       dailyRecovered: chartFetch.data[day].jumlahKasusSembuhperHari,
-      dailyDeaths: chartFetch.data[day].jumlahKasusMeninggalperHari
+      dailyDeaths: chartFetch.data[day].jumlahKasusMeninggalperHari,
     };
   }
 
@@ -127,7 +127,7 @@ export default function Chart() {
             <LineChart data={active}>
               <XAxis dataKey="name" />
               <YAxis
-                width={40}
+                width={45}
                 scale="log"
                 domain={["auto", "auto"]}
                 allowDataOverflow
