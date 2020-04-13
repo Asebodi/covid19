@@ -5,7 +5,7 @@ function useStats(url) {
   const [stats, setStats] = useState();
   useEffect(() => {
     async function fetchData() {
-      const data = await fetch(url).then(res => res.json());
+      const data = await fetch(url).then((res) => res.json());
       setStats(data);
     }
     fetchData();
@@ -14,7 +14,11 @@ function useStats(url) {
 }
 
 function numberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  if (x != null) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  } else {
+    return "Unavailable";
+  }
 }
 
 export default function Global() {

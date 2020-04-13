@@ -13,7 +13,11 @@ function useStats(url) {
 }
 
 function numberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  if (x != null) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  } else {
+    return "Unavailable";
+  }
 }
 
 function Countries() {
