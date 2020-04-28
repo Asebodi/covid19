@@ -75,7 +75,7 @@ export default function Chart() {
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={active}>
               <XAxis dataKey="name" />
-              <YAxis width={45} />
+              <YAxis width={50} />
               <Tooltip />
               <Legend />
               <Line
@@ -127,7 +127,7 @@ export default function Chart() {
             <LineChart data={active}>
               <XAxis dataKey="name" />
               <YAxis
-                width={45}
+                width={50}
                 scale="log"
                 domain={["auto", "auto"]}
                 allowDataOverflow

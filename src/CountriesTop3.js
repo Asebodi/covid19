@@ -27,7 +27,7 @@ function Countries() {
 
   if (!countries) return <p className="loading">Loading....</p>;
 
-  const country = countries.slice(8, 14);
+  const country = countries.slice(1, 7);
 
   return (
     <div>
